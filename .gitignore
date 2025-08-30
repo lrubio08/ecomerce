@@ -1,0 +1,16 @@
+# Python
+*.pyc
+__pycache__/
+
+# Entorno Virtual
+env/
+venv/
+
+# Configuración Local
+*.sqlite3
+db.sqlite3
+.env
+
+# Archivos Estáticos y de Media
+staticfiles/
+media/
