@@ -14,3 +14,6 @@ db.sqlite3
 # Archivos Estáticos y de Media
 staticfiles/
 media/
+
+
+
