@@ -1,12 +1,6 @@
 asgiref==3.8.1
 Django==5.1.7
-<<<<<<< HEAD
-python-decouple==3.8
-psycopg2-binary
-gunicorn
-=======
 mysqlclient==2.2.7
 python-decouple==3.8
 sqlparse==0.5.3
 tzdata==2025.1
->>>>>>> 245d96fb89bd2baf208d16591824007427797fa4
