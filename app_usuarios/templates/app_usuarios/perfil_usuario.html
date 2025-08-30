@@ -1,0 +1,35 @@
+{% extends '../base.html' %} {% load static %} {% block title %} Mi perfil | SmartTech {% endblock title %} {% block estilos %} {{ block.super }}
+
+<link rel="stylesheet" href="{% static 'css/registro.css' %}"> {% endblock estilos %} {% block content %}
+
+
+<div class="container ">
+    <h1 class="text-center mt-5"> {{user.first_name}} {{user.last_name}} </h1>
+
+    <div class="row d-flex align-content-center justify-content-center">
+
+        <div class="col-6">
+            <div class="card custom-card h-100 ">
+                <div class="card-body d-flex flex-column ">
+                    <h5 class="card-title mt-auto ">Mi perfil </h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item custom-card-li mt-3">Nombre: {{user.first_name}} {{user.last_name}} </li>
+                        <li class="list-group-item custom-card-li ">Direccion: {{user.direccion}}</li>
+                        <li class="list-group-item custom-card-li">Ciudad: {{user.ciudad}} </li>
+                        <li class="list-group-item custom-card-li">Comuna: {{user.comuna}} </li>
+                        <li class="list-group-item custom-card-li">Email: {{user.email}}</li>
+                        <li class="list-group-item custom-card-li">Telefono: {{user.telefono}}</li>
+                        <li class="list-group-item custom-card-li">Rut: {{user.rut}}</li>
+                        <li class="list-group-item custom-card-li">Fecha de nacimiento: {{user.fecha_nacimiento |date:"d/m/y"}} </li>
+                        <li class="list-group-item custom-card-li">Genero: {{user.genero}} </li>
+                    </ul>
+                    <a href=" {% url 'actualizar_datos' %}" class="custom-button-card w-100 mt-3">Actualizar datos </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="{% static 'js/scriptRegistro.js' %} "></script>
+{% endblock content %}

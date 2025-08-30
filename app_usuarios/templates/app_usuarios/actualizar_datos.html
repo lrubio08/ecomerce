@@ -1,0 +1,56 @@
+{% extends '../base.html' %} {% load static %} {% block title %} Actualización de datos | SmartTech {% endblock title %} {% block estilos %} {{ block.super }}
+
+<link rel="stylesheet" href="{% static 'css/registro.css' %}"> {% endblock estilos %} {% block content %}
+<div class="container ">
+    <h1 class="text-center mt-5">Formulario de actualizacion de datos </h1>
+    <div class="row d-flex align-content-center justify-content-center">
+        <div class="col-6">
+            <div class="section-divider"></div>
+            <form class="form-registro" method="POST" action="{% url 'actualizar_datos' %}">
+                {% csrf_token %}
+                <div class="form-group mt-3">
+                    <input type="text" name="{{form.first_name.name}}" class="form-control form-input" {% if form.first_name.value %} value="{{form.first_name.value}}" {% else %} placeholder="Ingrese su nombre " {% endif %}>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="{{form.last_name.name}}" class="form-control form-input" {% if form.last_name.value %} value="{{form.last_name.value}}" {else %} placeholder="Ingrese su apellido" {% endif %}>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="{{form.rut.name}}" class="form-control form-input" {% if form.rut.value %} value="{{form.rut.value}}" {% else %} placeholder="Ingrese su rut" {% endif %}>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="{{form.telefono.name}}" class="form-control form-input" {% if form.telefono.value %} value="{{form.telefono.value}}" {% else %} placeholder="Ingrese su telefono" {% endif %}>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="{{form.direccion.name}}" class="form-control form-input" {% if form.direccion.value %} value="{{form.direccion.value}}" {% else %} placeholder="Ingrese su dirección" {% endif %}>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="{{form.comuna.name}}" class="form-control form-input" {% if form.comuna.value %} value="{{form.comuna.value}}" {% else %} placeholder="Ingrese su comuna" {% endif %}>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="{{form.ciudad.name}}" class="form-control form-input" {% if form.ciudad.value %} value="{{form.ciudad.value}}" {% else %} placeholder="Ingrese su ciudad" {% endif %}>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="email" name="{{form.email.name}}" id="email" class="form-control form-input" {% if form.email.value %} value="{{form.email.value}}" {% else %} placeholder="Ingrese su email" {% endif %}>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                    <input type="date" name="{{form.fecha_nacimiento.name}}" class="form-control form-input" {% if form.fecha_nacimiento.value %} value="{{form.fecha_nacimientovalue}}" {% else %} placeholder="Ingrese su fecha de nacimineto" {% endif %}>
+                </div>
+                <select name="{{ form.genero.name }}" class="form-select form-input mt-3">
+                    <option value="" disabled {% if not form.genero.value %}selected{% endif %}>Selecciona tu género</option>
+                        {% for choice in form.genero.field.choices %}
+                            {% if choice.0  %}
+                                <option value="{{ choice.0 }}" {% if choice.0 == form.genero.value %}selected{% endif %}>
+                                    {{ choice.1 }}
+                                </option>
+                            {% endif %}
+                        {% endfor %}
+                </select>
+
+                <button type="submit " class=" custom-button w-100 mb-3 mt-3">Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

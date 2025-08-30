@@ -1,0 +1,145 @@
+{% extends 'base.html' %} {% block title %} SmartTech| Home {% endblock title %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}"> {% block content %}
+<div class="container">
+    <main>
+        <!--Secccion principal-->
+        <section class="principal text-center">
+            <h1 class="m-3 p-3">Bienvenidos a SmartTech, tu tienda de tecnologia en linea </h1>
+            <h2 class="m-3 p-3">Conoce nuestras últimas novedades y productos</h2>
+            <div class="container ">
+                <div class="row d-flex align-items-center align-content-center">
+                    <div class="col-sm-12 col-lg-6">
+                        <a class="custom-button mt-3" href=" # ">Explorar Productos</a>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 ">
+                        <a class="custom-button mt-3" href="# ">Ofertas Destacadas</a>
+                    </div>
+                </div>
+            </div>
+            <div class="section-divider"></div>
+        </section>
+        <!--sección Categorias-->
+        <section id="categorias " class="seccion-categorias">
+            <h2 class="text-center m-3 p-3 ">Nuestras Categorias </h2>
+            <div class="row ">
+                <div class="col-sm-12 col-md-6 col-lg-4 mb-3 d-flex ">
+                    <div class="card custom-card h-100 ">
+                        <img class="card-img-top " src="{% static 'img/televisor.png' %} " alt="Card image cap ">
+                        <div class="card-body d-flex flex-column ">
+                            <h5 class="card-title mt-auto ">Televisores</h5>
+                            <p class="card-text ">Disfruta de la mejor experiencia visual con nuestra selección de televisores de última generación. Calidad de imagen excepcional, sonido envolvente y las tecnologías más avanzadas, todo diseñado para llevar tu entretenimiento
+                                al siguiente nivel.</p>
+                            <a href="# " class="custom-button-card w-100 ">Ver Productos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 mb-3 d-flex ">
+                    <div class="card custom-card h-100 ">
+                        <img class="card-img-top " src="{% static 'img/celulares.png' %} " alt="Card image cap ">
+                        <div class="card-body d-flex flex-column ">
+                            <h5 class="card-title ">Samrtphone</h5>
+                            <p class="card-text ">Mantente conectado con el mundo gracias a nuestra gama de smartphones. Descubre dispositivos con diseños innovadores, cámaras sorprendentes y un rendimiento que se adapta a tu estilo de vida.</p>
+                            <a href="# " class="custom-button-card w-100 mt-auto ">Ver Productos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 mb-3 d-flex ">
+                    <div class="card custom-card h-100 ">
+                        <img class="card-img-top " src=" {% static 'img/computadorCategorias.png' %} " alt="Card image cap ">
+                        <div class="card-body d-flex flex-column ">
+                            <h5 class="card-title mt-auto ">Computadores</h5>
+                            <p class="card-text ">Encuentra la computadora ideal para trabajar, estudiar o jugar. Desde laptops compactas hasta potentes PCs de escritorio, tenemos las mejores opciones para que alcances tu máximo potencial.</p>
+                            <a href="# " class="custom-button-card w-100 ">Ver Productos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="section-divider"></div>
+        <section id="destacados " class="productos-destacados">
+            <h2 class="text-center m-3 p-3 ">Productos Destacados</h2>
+            <div class="row ">
+                <div class="col-sm-12 col-md-6 col-lg-4 mb-3 d-flex ">
+                    <div class="card custom-card h-100 ">
+                        <img class="card-img-top " src=" {% static 'img/computadorDestacados (1).png' %} " alt="Card image cap ">
+                        <div class="card-body d-flex flex-column ">
+                            <h5 class="card-title ">PC Gamer Alientech</h5>
+                            <h6 class="card-subtitle mb-2 text-muted ">$2,299.00</h6>
+
+                            <ul class="list-group list-group-flush my-3 ">
+                                <li class="list-group-item custom-list ">Procesador: Intel Core i7 10ª Gen</li>
+                                <li class="list-group-item custom-list ">Tarjeta gráfica: NVIDIA RTX 3070</li>
+                                <li class="list-group-item custom-list ">16GB de RAM DDR4</li>
+                                <li class="list-group-item custom-list ">1TB SSD</li>
+                            </ul>
+
+                            <p class="card-text mt-auto ">Experimenta un rendimiento sin límites con la PC Gamer Alientech, diseñada para juegos exigentes y multitarea de alto rendimiento, ideal para los amantes del gaming.</p>
+                            <a href="# " class="custom-button-card  mt-2 ">Ver Más Detalles</a>
+                            <a href="# " class="custom-button-card  mt-2 ">Añadir al Carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 mb-3 d-flex ">
+                    <div class="card custom-card h-100 ">
+                        <img class="card-img-top " src=" {% static 'img/televisorDestacados.png' %} " alt="Card image cap ">
+                        <div class="card-body d-flex flex-column ">
+                            <h5 class="card-title ">Smart TV 65" Ultra HD</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">$1,200.00</h6>
+
+                            <ul class="list-group list-group-flush my-3">
+                                <li class="list-group-item custom-list">Resolución: 4K UHD</li>
+                                <li class="list-group-item custom-list">Smart TV con Android</li>
+                                <li class="list-group-item custom-list">HDR y Conectividad Wi-Fi</li>
+                            </ul>
+                            <p class="card-text mt-auto">Disfruta de una experiencia visual inigualable con colores vivos y brillo espectacular, ideal para transformar sala.</p>
+
+                            <a href="#" class="custom-button-card  mt-2">Ver Mas detalles </a>
+                            <a href="#" class="custom-button-card  mt-2">Añadir al Carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 mb-3  d-flex">
+                    <div class="card custom-card h-100">
+                        <img class="card-img-top" src=" {% static 'img/celularesDestacados.png' %}" alt="Card image cap">
+                        <div class="card-body d-flex flex-column">
+
+                            <h5 class="card-title">Smartphone X Pro Max</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">$899.00</h6>
+
+                            <ul class=" list-group list-group-flush my-3">
+                                <li class="list-group-item custom-list">Pantalla AMOLED de 6.5"</li>
+                                <li class="list-group-item custom-list">Triple Cámara 48MP</li>
+                                <li class="list-group-item custom-list">B atería de 4500 mAh</li>
+                                <li class="list-group-item custom-list">Procesador Octa-Core</li>
+                            </ul>
+
+                            <p class="card-text">Experimenta un rendimiento excepcional y una calidad fotográfica de nivel profesional con el Smartphone X Pro Max, diseñado para llevar tu experiencia móvil al siguiente nivel</p>
+
+                            <a href="#" class="custom-button-card  mt-auto">Ver Más Detalles</a>
+                            <a href="#" class="custom-button-card  mt-2">Añadir al Carrito</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="section-divider"></div>
+        <section id="oferta" class="ofertas ">
+            <h3 class="mt-3 ">¡Ofertas que no te puedes perder!</h3>
+            <div class="alert  mt-3 d-flex align-items-center ms-auto">
+                ¡Hasta 30% de descuento en Smartphones, computadores y muchas más!
+                <a href="#" class="custom-button-ofertas ms-auto">¡Ver ofertas!</a>
+            </div>
+        </section>
+        <div class="section-divider"></div>
+        <section id="beneficio" class="beneficios">
+            <h3>¿Por qué comprar con nosotros?</h3>
+            <ul class="list-unstyled">
+                <li>- Envíos gratis</li>
+                <li>- Compra segura</li>
+                <li>- Soporte 24/7</li>
+            </ul>
+        </section>
+    </main>
+</div>
+
+{% endblock content %}

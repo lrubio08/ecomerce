@@ -1,0 +1,78 @@
+{% extends '../base.html' %} {% load static %} {% block title %} Registro | SmartTech {% endblock title %} {% block estilos %} {{ block.super }}
+
+<link rel="stylesheet" href="{% static 'css/registro.css' %}"> {% endblock estilos %} {% block content %}
+
+
+<div class="container ">
+    <h1 class="text-center mt-5">Formulario de Registro</h1>
+
+    <div class="row d-flex align-content-center justify-content-center">
+
+        <div class="col-6">
+            <div class="section-divider"></div>
+            <form class="form-registro" method="POST" action="{% url 'registro' %}">
+                {% csrf_token %}
+                <div class="form-group mt-3">
+                    <input type="text" name="{{form.first_name.name}}" class="form-control form-input" placeholder="Ingrese su nombre">
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="{{form.last_name.name}}" class="form-control form-input" placeholder="Ingrese su apellido">
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="{{form.telefono.name}}" class="form-control form-input" placeholder="Ingrese su telefono">
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="{{form.direccion.name}}" class="form-control form-input" placeholder="Ingrese su dirección">
+                </div>
+                <div class="form-group mt-3">
+                    <input type="email" name="{{form.email.name}}" id="email" class="form-control form-input" placeholder="ejemplo@ejemplo.com">
+                </div>
+                {% if form.username.errors %}
+                <ul class="errorlist">
+                    {% for error in form.username.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <div class="form-group mt-3">
+                    <input type="text" name={{form.username.name}} class="form-control form-input" placeholder="Ingrese un nombre de usuario">
+                </div>
+                {% if form.password1.errors or form.password2.errors %}
+                <ul class="errorlist">
+                    {% for error in form.password1.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %} {% for error in form.password2.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <div class="form-group mt-3">
+                    <ul>
+                        <li class="titulo-li">La contraseña deve contener minimo 8 caracteres</li>
+                        <li class="titulo-li">Deve contener al menos una letra mayúscula</li>
+                        <li class="titulo-li">Deve contener números</li>
+                        <li class="titulo-li">Deve contener al menos un caracter especial</li>
+                    </ul>
+                    <input type="password" name="{{ form.password1.name }}" class="form-control form-input" id="pass1" placeholder="Ingrese contraseña">
+                </div>
+
+                <div class="form-group mt-3">
+                    <input type="password" name="{{ form.password2.name }}" class="form-control form-input" id="pass2" placeholder="Repita contraseña">
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="showPasswordCheckbox">
+                        <label class="form-check-label  text-light" for=" exampleChek1 ">Ver contraseña</label>
+                    </div>
+                </div>
+                <button type="submit " class=" custom-button w-100 mb-3 ">Registrarse</button>
+                <div class="row d-flex align-content-center">
+                    <div class=" col-6 text-start">
+                        <p class="text-center me-2">¿Ya tienes una cuenta? <a href=" {% url 'login' %} " class="text-link ">Inicia Sesión</a></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="{% static 'js/ScriptRegistro.js' %}"> {% endblock content %}

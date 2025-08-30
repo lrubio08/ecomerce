@@ -1,0 +1,36 @@
+{% extends '../base.html' %} {% load static %} {% block title %} Inicio De Sesión | SmartTech {% endblock title %} {% block estilos %} {{ block.super }}
+
+<link rel="stylesheet" href="{% static 'css/registro.css' %}"> {% endblock estilos %} {% block content %}
+<div class="container ">
+    <h1 class="text-center  mt-5">Inicia sesión</h1>
+
+    <div class="row  justify-content-center ">
+        <div class="col-6">
+            <div class="section-divider"></div>
+            <form class="form-registro" method="POST" action="{% url 'login' %}">
+                {% csrf_token %} {% if messages %}
+                <ul class="messages errorlist">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <div class="mb-3">
+                    <input type="texto" name="username" class="form-control form-input" placeholder="Ingresa tu nombre de usuario">
+                </div>
+                <div class="mb-3">
+                    <input type="password" name="password" class="form-control form-input" id="pass1" placeholder="Ingresa tu contraseña">
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="showPasswordCheckbox">
+                        <label class="form-check-label" for="exampleChek1">Ver contraseña</label>
+                    </div>
+                </div>
+                <button type="submit" class="custom-button w-100 mb-2">Iniciar Sesión</button>
+                <div class=" col-6 ">
+                    <p>Recuperar contraseña <a href=" {% url 'correo' %} " class=" text-link">aquí</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

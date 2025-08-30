@@ -1,0 +1,75 @@
+.form-registro {
+    border: 3px solid;
+    border-image: linear-gradient(to right, #00FFFF, #00008B)1;
+    padding: 20px;
+    margin-bottom: 3rem;
+}
+
+form button.custom-button {
+    display: inline-block;
+    text-align: center;
+    background: linear-gradient(135deg, #00FFFF, #00D084);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+    color: #000;
+    width: 100%;
+    padding: 8px 16px;
+    border-radius: 5px;
+    border: none;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+}
+
+input.form-input {
+    background: linear-gradient(135deg, #9df0f0, #a2a2f8);
+    border: 2px solid #00D084;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+input.form-control.form-input::placeholder {
+    font-weight: bold;
+}
+
+form button.custom-button:hover {
+    background: linear-gradient(135deg, #00D084, #00FFFF);
+    box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+input:valid {
+    border-color: #039b63;
+}
+
+input:invalid {
+    border-color: #ff0000;
+}
+
+a.text-link {
+    color: #00D084;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+a.text-link:hover {
+    color: #00FFFF;
+}
+
+.login-page footer {
+    margin-top: 4rem;
+    overflow: hidden;
+    /* Evitar contenido adicional si excede la altura */
+}
+
+select.form-select.form-input {
+    background: linear-gradient(135deg, #9df0f0, #a2a2f8);
+    border: 2px solid #00D084;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+select.form-select.form-input::placeholder {
+    font-weight: bold;
+}

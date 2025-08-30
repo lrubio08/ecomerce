@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %} ecomerce {% endblock title %}
+    </title>
+    <!--Estilos personalizados-->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <!-- Bloque para estilos adicionales de cada página -->
+    {% block estilos %}{% endblock estilos %}
+    <!--Estilos boostrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+    <!--Navbar Se repite en todas las paginas del sitio-->
+    <header>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light text-light align-items-center">
+            <div class="container container-fluid">
+                <a class="navbar-brand" href="{% url 'index' %}"><img class="logo" src="{% static 'img/logo.png' %}" alt=""></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#">Productos</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link text-light" href="#categorias">Categorias</a></li>
+                        <li class="nav-item"><a class="nav-link text-light" href="#destacados">Productos destacados</a></li>
+                        <li class="nav-item"><a class="nav-link text-light" href="#oferta">Ofertas</a></li>
+                        <li class="nav-item"><a class="nav-link text-light" href="#beneficio">Beneficios</a></li>
+                    </ul>
+                    <form class="d-flex ms-auto">
+                        <div class="d-flex">
+                            <a href="{% url 'registro' %}" class="btn btn-outline-light me-3 d-flex align-items-center">Registro</a>
+                            <a href="{% url 'login' %}" class="btn btn-outline-light me-3 d-flex align-items-center">Iniciar Sesión</a>
+                        </div>
+                        <a href="/carrito" class="ms-3">
+                            <img src="{% static 'img/carrito.png' %}" class="logo" alt="">
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    {%block content%}
+    <!--bloque de contenido variable en las distintas paginas del sitio-->
+    {%endblock%}
+
+
+    <!--Footer Se repite en todas las paginas del sitio-->
+    <footer>
+        <div class="container">
+            <div class="row custom-text-nav-footer ">
+                <div class="list-group footer-column col-12 col-lg-4 ml-2">
+                    <h3 class=" mt-2">A cerca de SmartTech</h3>
+                    <div class="section-divider"></div>
+                    <p class="">
+                        SmarTech es tu lugar para lo último en tecnología. Encuentra lo mejor en gadgets y productos innovadores.
+                    </p>
+                </div>
+                <div class="list-group footer-column col-12 col-lg-4 ">
+                    <h3 class=" mt-2">Enlaces</h3>
+                    <div class="section-divider"></div>
+                    <ul class=" navbar-nav">
+                        <li class="nav-item "><a class="nav-link " href="# ">Preguntas frecuentes (FAQ)</a></li>
+                        <li class="nav-item "><a class="nav-link " href="# ">Terminos y condiciones</a></li>
+                        <li class="nav-item "><a class="nav-link " href="# ">Politica de privacidad </a></li>
+                        <li class="nav-item "><a class="nav-link " href="# ">Devoluciones y reembolsos</a></li>
+                        <li class="nav-item "><a class="nav-link " href="# ">Envíos</a></li>
+                    </ul>
+                </div>
+                <div class="list-group footer-column col-12 col-lg-4 ">
+                    <h3 class=" mt-2 ">Medios de pago </h3>
+                    <div class="section-divider"></div>
+                    <ul class="navbar-nav ">
+                        <li class="nav-item ">Tarjetas de debito</li>
+                        <li class="nav-item ">Tarjetas de credito</li>
+                        <li class="nav-item ">Transferencias</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section-divider "></div>
+            <div class="row d-flex align-items-center justify-content-center ">
+                <p class="text-light text-center ">SmartTech &copy; 2025</p>
+                <p class="text-center ">
+                    Sitio web desarrollado con ❤ por
+                    <a href="https://luisrubiodev.cl " class="nav-link ">
+                    Luis Rubio R. <img src="{% static 'img/enlace.png' %} " alt=" ">
+                </a>
+                </p>
+
+            </div>
+        </div>
+    </footer>
+    <!--Sweetalert-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--Scripts personalizados-->
+    <script src="{% static 'js/script.js' %} "></script>
+    <script src="{% static 'js/ScriptRegistro.js' %} "></script>
+    <!--Scripts boostrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz " crossorigin="anonymous "></script>
+
+
+
+</body>
+
+</html>
