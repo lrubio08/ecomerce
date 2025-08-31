@@ -26,7 +26,7 @@ Este es un proyecto de e-commerce desarrollado con Django, PostgreSQL y Docker, 
 ---
 
 ## 📁 Estructura del proyecto
-
+---
 ecomerce/
 ├── ecomerce/ # Configuración principal de Django 
 │ ├── settings.py 
@@ -38,7 +38,7 @@ ecomerce/
 ├── docker-compose.yml 
 ├── .env 
 └── README_docker.md
-
+---
 
 ---
 
