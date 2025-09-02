@@ -75,4 +75,9 @@
 
 </div>
 
-<link rel="stylesheet" href="{% static 'js/ScriptRegistro.js' %}"> {% endblock content %}
+{% block scripts %}
+{{ block.super }}
+<script src="{% static 'js/ScriptRegistro.js' %}"></script>
+{% endblock scripts%}
+
+{% endblock content %}

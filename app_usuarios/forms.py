@@ -44,3 +44,6 @@ def clean_password1(self):
         if len(password1) < 8 or not any(c.isdigit() for c in password1) or not any(c.isupper() for c in password1) or not re.search(r'[!@#$%^&*(),.?":{}|<>]', password1):
             raise forms.ValidationError("¡La contraseña debe cumplir con los requerimientos!")
         return password1
+
+class RecuperarPasswordForm(forms.Form):
+    email = forms.EmailField(label='Correo electrónico')

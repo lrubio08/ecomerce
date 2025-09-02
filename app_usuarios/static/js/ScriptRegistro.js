@@ -1,3 +1,8 @@
+let urlParams;
+if (!urlParams) {
+    urlParams = new URLSearchParams(window.location.search);
+}
+
 function redirigirACorreo(correoUsuario) {
     let dominio = correoUsuario.split("@")[1];
     let enlace;
@@ -16,7 +21,6 @@ function redirigirACorreo(correoUsuario) {
 }
 
 //Uso en SweetAlert
-const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.get("registro_exitoso") === "1") {
     Swal.fire({
         title: "¡Registro exitoso!",
@@ -29,16 +33,14 @@ if (urlParams.get("registro_exitoso") === "1") {
         cancelButtonColor: "#d33",
     }).then((result) => {
         if (result.isConfirmed) {
-            window.open("https://mail.google.com/", "_blank"); // Cambia según el dominio
+            window.open("https://mail.google.com/", "_blank");
         }
     });
 }
 
-
-function alertaRecuperacion(correoUsuario) {
-    const enlaceCorreo = redirigirACorreo(correoUsuario);
+if (urlParams.get("correo_recuperacion_exitosa") === "1") {
     Swal.fire({
-        title: "coreo enviado ",
+        title: "Correo enviado",
         text: "El enlace para recuperar tu contraseña fue enviado a tu correo. Revisa tu bandeja y sigue los pasos para crear una nueva contraseña.",
         icon: "success",
         confirmButtonText: "Abrir mi correo",
@@ -48,7 +50,11 @@ function alertaRecuperacion(correoUsuario) {
         cancelButtonColor: "#d33",
     }).then((result) => {
         if (result.isConfirmed) {
-            window.open(enlaceCorreo, "_blank");
+            window.open("https://mail.google.com/", "_blank");
         }
     });
 }
+
+
+
+
