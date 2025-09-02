@@ -21,7 +21,7 @@ Este entorno Docker está diseñado para desplegar el proyecto Django `ecomerce`
 ---
 
 ## 📁 Estructura esperada del proyecto
-
+```
 . 
 ├── Dockerfile 
 ├── docker-compose.yml 
@@ -32,7 +32,7 @@ Este entorno Docker está diseñado para desplegar el proyecto Django `ecomerce`
 |   |── settings.py │ 
 |   |── urls.py 
 │   └── ...
-
+```
 
 ---
 
