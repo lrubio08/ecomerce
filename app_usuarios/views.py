@@ -5,7 +5,7 @@ from app_usuarios.models import Usuarios
 from .forms import UsuariosForm, RecuperarPasswordForm
 from app_usuarios.utils import enviar_correo
 from django.contrib.auth import authenticate
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout as django_logout
 from django.contrib.auth.decorators import login_required
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
@@ -51,7 +51,7 @@ def login_views(request):
         else:
             messages.error(request, '¡Nombre de usuario o contraseña incorrectos!')
             return render(request, 'app_usuarios/login.html')
-        return redirect('perfil_usuario')
+        return redirect('index')
     return render(request, 'app_usuarios/login.html')
 
 def correo_recuperacion_password(request):
@@ -133,3 +133,7 @@ def actualizar_datos(request):
         'usuario': usuario
     }
     return render(request, 'app_usuarios/actualizar_datos.html', context)
+
+def logout(request):
+    django_logout(request)
+    return redirect('index')

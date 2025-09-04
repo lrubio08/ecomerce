@@ -4,6 +4,16 @@ Este es un proyecto de e-commerce desarrollado con Django, PostgreSQL y Docker, 
 
 ---
 
+## 📸 Vista del Home
+
+![Imagén del Home de SamrtTech](static/img/Home.png)
+
+La página principal incluye navegación por categorías, búsqueda de productos y acceso a ofertas destacadas. El diseño está pensado para ser limpio, responsivo y funcional.
+
+---
+
+---
+
 ## 🚀 Funcionalidades principales
 
 - Gestión de productos, categorías y stock

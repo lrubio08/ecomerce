@@ -35,6 +35,35 @@ h3,
     margin: 20px 0;
 }
 
+.container.sub-menu {
+    box-shadow: 4px 4px 7px rgba(246, 248, 150, 0.842);
+}
+
+.dropdown-menu {
+  background-color: transparent !important;  
+  box-shadow: 4px 4px 7px rgba(246, 248, 150, 0.842);
+  border: none !important;
+}
+
+.dropdown-item{
+    background-color: transparent !important;
+    color: white !important;
+}
+
+a.dropdown-item:hover {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+input::placeholder {
+  color: white;
+  opacity: 1; 
+}
+
+.btn-outline-light:hover {
+    background-color: transparent !important;
+}
+
 
 /*Sección Prioncipal Main*/
 
@@ -57,6 +86,7 @@ a.custom-button:hover {
     box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.3);
     transform: translateY(-2px);
 }
+
 
 
 /*seccion categorias */
