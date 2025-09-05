@@ -65,3 +65,14 @@ class Televisor(Producto):
     puertos_usb = models.PositiveIntegerField()
     conectividad = models.CharField(max_length=100)  # Ej: "WiFi, Bluetooth, Ethernet"
     sonido = models.CharField(max_length=100, blank=True)  # Ej: "Dolby Atmos"
+
+class Categoria(models.Model):
+    nombre = models.CharField(max_length=50)
+
+class Filtro(models.Model):
+    nombre = models.CharField(max_length=50)
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+
+class OpcionFiltro(models.Model):
+    filtro = models.ForeignKey(Filtro, on_delete=models.CASCADE)
+    valor = models.CharField(max_length=50)
