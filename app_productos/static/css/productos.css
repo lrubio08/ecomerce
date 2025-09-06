@@ -1,0 +1,11 @@
+.img-banner {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.custom-sidebar {
+    background: linear-gradient(to right, #00FFFF, #00008B) !important;
+    padding: 15px;
+    border-radius: 5px;
+}
