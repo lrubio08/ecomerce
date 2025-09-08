@@ -68,6 +68,11 @@
         </nav>
         <!--Submenu-->
         
+        {% block carrusel  %}
+            <!--Aqui queda vacio-->
+        {% endblock carrusel  %}
+            
+        
         {% block sub_menu %}
             {% if tipo_submenu == "filtros" %}
                 {% include 'componentes/submenu_filtros.html' %}
@@ -137,6 +142,26 @@
         <script src="{% static 'js/ScriptRegistro.js' %} "></script>
         <!--Scripts boostrap-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz " crossorigin="anonymous " defer></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                console.log('Bootstrap cargado:', typeof bootstrap);
+                console.log('Offcanvas disponible:', typeof bootstrap.Offcanvas);
+
+                const element = document.getElementById('filtrosOffcanvas');
+                console.log('Elemento encontrado:', element);
+
+                if (element && bootstrap.Offcanvas) {
+                    console.log('Intentando crear Offcanvas...');
+                    try {
+                        const offcanvas = new bootstrap.Offcanvas(element);
+                        console.log('Offcanvas creado exitosamente');
+                    } catch (error) {
+                        console.error('Error al crear Offcanvas:', error);
+                    }
+                }
+            });
+        </script>
     {% endblock scripts  %}
         
     

@@ -6,13 +6,16 @@
                     aria-expanded="false">Categorias</button>
 
                 <span class="visually-hidden">Toggle Dropdown</span>
-                <ul class="dropdown-menu sub-menu text-light">
-                    <li><a class="dropdown-item" href=" {% url 'smartphone' %} ">Smartphone</a></li>
-                    <li><a class="dropdown-item" href="{% url 'notebook' %}">Notebook</a></li>
-                    <li><a class="dropdown-item" href="{% url 'tablet' %}">Tablet</a></li>
-                    <li><a class="dropdown-item" href="{% url 'pc_escritorio' %}">PC Escritorio</a></li>
-                    <li><a class="dropdown-item" href="{% url 'televisor' %}">Televisores</a></li>
+                <ul class="dropdown-menu sub-menu">
+                    {% for categoria in categorias %}
+                    <li>
+                        <a class="dropdown-item" href="{% url 'productos_por_categoria' slug=categoria.slug %}">
+                            {{ categoria.nombre }}
+                        </a>
+                    </li>
+                    {% endfor %}
                 </ul>
+
             </div>
         </div>
         <div class="col-8 d-flex justify-content-end">

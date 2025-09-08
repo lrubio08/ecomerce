@@ -1,26 +1,35 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/productos.css' %}">
+
 <div class="container">
     <div class="row">
         <div class="col-4">
-            <div class="offcanvas offcanvas-start custom-sidebar " tabindex="-1" id="sidebar">
+            <div class="offcanvas offcanvas-start custom-sidebar" tabindex="-1" id="filtrosOffcanvas"
+                aria-labelledby="filtrosOffcanvasLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title">Filtrar Productos</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                    <h5 id="filtrosOffcanvasLabel">Filtros</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
                 </div>
                 <div class="offcanvas-body">
                     <div class="filtro-bloque">
-                        {% for tipo, opciones in filtros.items %}
-                        <h4>{{ tipo|title }}</h4>
-                        <ul class="list-group">
-                            {% for opcion in opciones %}
-                            <li class="list-group-item bg-transparent">
-                                <input type="checkbox" name="{{ tipo }}" value="{{ opcion }}"> {{ opcion }}
-                            </li>
-                            {% endfor %}
-                        </ul>
+                        {% for filtro in filtros %}
+                        <div class="filtro">
+                            <h4>{{ filtro.nombre }}</h4>
+                            <ul class="list-group">
+                                {% for opcion in filtro.opcionfiltro_set.all %}
+                                <li class="list-group-item bg-transparent">
+                                    <input type="checkbox" name="{{ filtro.slug }}" value="{{ opcion.valor }}">
+                                    {{ opcion.valor }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                         {% endfor %}
+
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

@@ -1,84 +1,99 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from .models import Categoria, Producto, AtributoProducto, ValorAtributo
+from django.db.models import Count, Q
+from collections import defaultdict
 
 # Create your views here.
+from .models import Filtro
 
-def smartphone(request):
-    filtros = {
-        "Marca": ["Samsung", "Apple", "Xiaomi", "Honor"],
-        "modelo": ["Galaxy S23", "iPhone 14", "Redmi Note 12", "Honor Magic 5"],
-        "sistema operativo": ["Android", "iOS"],
-        "pantalla": ["5.5 a 6.0 pulgadas", "6.1 a 6.5 pulgadas", "6.6 pulgadas o más"],
-        "almacenamiento": ["64 GB", "128 GB", "256 GB"],
-        "bateria": ["4000 mAh", "5000 mAh", "6000 mAh"],
-        "camara": ["12 MP", "48 MP", "108 MP"]
+def productos_por_categoria(request, slug):
+    categoria = get_object_or_404(Categoria, slug=slug)
+    productos = Producto.objects.filter(categoria=categoria, stock__gt=0)
+
+    filtros_aplicados = aplicar_filtros(request, productos)
+    productos = filtros_aplicados['productos']
+
+    filtros_disponibles = Filtro.objects.filter(categoria=categoria)
+
+    contexto = {
+        'titulo': f'{categoria.nombre}: variedad, tecnología y estilo',
+        'imagen_banner': categoria.imagen_banner.url,
+        'productos': productos,
+        'categoria': categoria,
+        'filtros': filtros_disponibles,
+        'filtros_aplicados': filtros_aplicados['aplicados'],
+        'tipo_submenu': 'filtros'
     }
-    return render(request, "app_productos/smartphone.html", {
-        "tipo_submenu": "filtros",
-        "categoria": "smartphone",
-        "filtros": filtros
-    })
+
+    return render(request, 'app_productos/productos_categorias.html', contexto)
 
 
-def notebook(request):
-    filtros = {
-    "marca": ["HP", "Dell", "Lenovo", "Apple"],
-    "modelo": ["MacBook Air M2", "Dell XPS 13", "HP Pavilion", "Lenovo ThinkPad"],
-    "procesador": ["Intel i5", "Intel i7", "AMD Ryzen 5", "Apple M2"],
-    "ram": ["8 GB", "16 GB", "32 GB"],
-    "almacenamiento": ["256 GB SSD", "512 GB SSD", "1 TB SSD"],
-    "pantalla": ["13.3 pulgadas", "14 pulgadas", "15.6 pulgadas"],
-    "sistema_operativo": ["Windows 11", "macOS", "Linux"]
-}
-    return render(request, "app_productos/notebook.html", {
-        "tipo_submenu": "filtros",
-        "categoria": "notebook",
-        "filtros": filtros
-    })
+def generar_filtros_dinamicos(categoria, productos):
+    """Genera filtros dinámicos basados en los productos disponibles"""
+    filtros = {}
 
-def tablet(request):
-    filtros = {
-    "marca": ["Samsung", "Apple", "Huawei", "Lenovo"],
-    "modelo": ["iPad 10ª gen", "Galaxy Tab S9", "Huawei MatePad", "Lenovo Tab M10"],
-    "pantalla": ["8 pulgadas", "10.1 pulgadas", "12.9 pulgadas"],
-    "almacenamiento": ["64 GB", "128 GB", "256 GB"],
-    "sistema_operativo": ["Android", "iPadOS"],
-    "conectividad": ["Wi-Fi", "Wi-Fi + LTE"]
-}
+    atributos = AtributoProducto.objects.filter(
+        categoriaatributo__categoria=categoria,
+        categoriaatributo__es_filtrable=True
+    ).order_by('categoriaatributo__orden')
+    
+    for atributo in atributos:
+        valores = ValorAtributo.objects.filter(
+            producto__in=productos,
+            atributo=atributo
+        ).values_list('valor', flat=True).distinct()
+        
+        if valores:
+            if atributo.tipo == 'rango':
+                valores_numericos = [int(v.split()[0]) for v in valores if v.split()[0].isdigit()]
+                if valores_numericos:
+                    filtros[atributo.nombre] = {
+                        'tipo': 'rango',
+                        'min': min(valores_numericos),
+                        'max': max(valores_numericos),
+                        'unidad': atributo.unidad
+                    }
+            else:
+                filtros[atributo.nombre] = {
+                    'tipo': 'lista',
+                    'valores': list(valores)
+                }
 
-    return render(request, "app_productos/tablet.html", {
-        "tipo_submenu": "filtros",
-        "categoria": "tablet",
-        "filtros": filtros
-    })
+    precios = productos.values_list('precio', flat=True)
+    if precios:
+        filtros['precio'] = {
+            'tipo': 'rango',
+            'min': int(min(precios)),
+            'max': int(max(precios)),
+            'unidad': '$'
+        }
+    
+    return filtros
 
-def pc_escritorio(request):
-    filtros = {
-    "marca": ["HP", "Dell", "Lenovo", "Asus"],
-    "procesador": ["Intel i5", "Intel i7", "AMD Ryzen 5", "AMD Ryzen 7"],
-    "ram": ["8 GB", "16 GB", "32 GB"],
-    "almacenamiento": ["1 TB HDD", "512 GB SSD", "1 TB SSD"],
-    "sistema_operativo": ["Windows 11", "Linux"],
-    "tipo": ["Torre", "All-in-One"]
-}
-
-    return render(request, "app_productos/pc_escritorio.html",{
-        "tipo_submenu": "filtros",
-        "categoria": "pc escritorio",
-        "filtros": filtros
-    })
-
-def televisor(request):
-    filtros = {
-    "marca": ["Samsung", "LG", "Sony", "TCL"],
-    "tipo": ["Smart TV", "LED", "OLED", "QLED"],
-    "tamaño": ["32 pulgadas", "43 pulgadas", "55 pulgadas", "65 pulgadas"],
-    "resolución": ["HD", "Full HD", "4K UHD", "8K"],
-    "sistema_operativo": ["Tizen", "webOS", "Android TV", "Roku TV"],
-    "conectividad": ["Wi-Fi", "Bluetooth", "Ethernet"]
-}
-
-    return render(request, "app_productos/televisor.html",{
-        "tipo_submenu": "filtros",
-        "categoria": "televisores",
-        "filtros": filtros
-    })
+def aplicar_filtros(request, productos_base):
+    productos = productos_base
+    filtros_aplicados = {}
+    
+    for key, value in request.GET.items():
+        if key.startswith('filtro_') and value:
+            atributo_nombre = key.replace('filtro_', '')
+            
+            if atributo_nombre == 'precio':
+                precio_min, precio_max = value.split('-')
+                productos = productos.filter(
+                    precio__gte=precio_min,
+                    precio__lte=precio_max
+                )
+            else:
+                valores = value.split(',')
+                productos = productos.filter(
+                    atributos__atributo__nombre=atributo_nombre,
+                    atributos__valor__in=valores
+                )
+            
+            filtros_aplicados[atributo_nombre] = value
+    
+    return {
+        'productos': productos.distinct(),
+        'aplicados': filtros_aplicados
+    }

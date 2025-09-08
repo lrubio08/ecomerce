@@ -1,10 +1,46 @@
 {% extends 'base.html' %} {% block title %} SmartTech| Home {% endblock title %} {% load static %}
-<link rel="stylesheet" href="{% static 'css/styles.css' %}"> {% block content %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+{% block carrusel %}
+<div class="container mt-3">
+    <div class="row">
+        <div id="carouselExampleControls" class="carousel slide carrusel-contenedor" data-bs-ride="carousel">
+            <div class="carousel-inner carrusel-imagen">
+                <div class="carousel-item active">
+                    <img src="{% static 'img/computador_banner_carrusel.jpg' %}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'img/laptop_banner_carrusel.jpg' %}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'img/celu_banner_carrusel.jpg' %}" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+{% endblock carrusel %}
+
+
+{% block content %}
+
 <div class="container">
     <main>
         <!--Secccion principal-->
         <section class="principal text-center">
-            <h1 class="m-3 p-3">Bienvenidos a SmartTech!  </h1>
+
+            <h1 class="m-3 p-3">Bienvenidos a SmartTech! </h1>
             <h2 class="m-3 p-3">Tu tienda de tecnologia en linea</h2>
             <h2 class="m-3 p-3">Conoce nuestras últimas novedades y productos</h2>
             <div class="container ">
@@ -28,7 +64,9 @@
                         <img class="card-img-top " src="{% static 'img/televisor.png' %} " alt="Card image cap ">
                         <div class="card-body d-flex flex-column ">
                             <h5 class="card-title mt-auto ">Televisores</h5>
-                            <p class="card-text ">Disfruta de la mejor experiencia visual con nuestra selección de televisores de última generación. Calidad de imagen excepcional, sonido envolvente y las tecnologías más avanzadas, todo diseñado para llevar tu entretenimiento
+                            <p class="card-text ">Disfruta de la mejor experiencia visual con nuestra selección de
+                                televisores de última generación. Calidad de imagen excepcional, sonido envolvente y las
+                                tecnologías más avanzadas, todo diseñado para llevar tu entretenimiento
                                 al siguiente nivel.</p>
                             <a href="# " class="custom-button-card w-100 ">Ver Productos</a>
                         </div>
@@ -39,17 +77,22 @@
                         <img class="card-img-top " src="{% static 'img/celulares.png' %} " alt="Card image cap ">
                         <div class="card-body d-flex flex-column ">
                             <h5 class="card-title ">Samrtphone</h5>
-                            <p class="card-text ">Mantente conectado con el mundo gracias a nuestra gama de smartphones. Descubre dispositivos con diseños innovadores, cámaras sorprendentes y un rendimiento que se adapta a tu estilo de vida.</p>
+                            <p class="card-text ">Mantente conectado con el mundo gracias a nuestra gama de smartphones.
+                                Descubre dispositivos con diseños innovadores, cámaras sorprendentes y un rendimiento
+                                que se adapta a tu estilo de vida.</p>
                             <a href="# " class="custom-button-card w-100 mt-auto ">Ver Productos</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 mb-3 d-flex ">
                     <div class="card custom-card h-100 ">
-                        <img class="card-img-top " src=" {% static 'img/computadorCategorias.png' %} " alt="Card image cap ">
+                        <img class="card-img-top " src=" {% static 'img/computadorCategorias.png' %} "
+                            alt="Card image cap ">
                         <div class="card-body d-flex flex-column ">
                             <h5 class="card-title mt-auto ">Computadores</h5>
-                            <p class="card-text ">Encuentra la computadora ideal para trabajar, estudiar o jugar. Desde laptops compactas hasta potentes PCs de escritorio, tenemos las mejores opciones para que alcances tu máximo potencial.</p>
+                            <p class="card-text ">Encuentra la computadora ideal para trabajar, estudiar o jugar. Desde
+                                laptops compactas hasta potentes PCs de escritorio, tenemos las mejores opciones para
+                                que alcances tu máximo potencial.</p>
                             <a href="# " class="custom-button-card w-100 ">Ver Productos</a>
                         </div>
                     </div>
@@ -62,7 +105,8 @@
             <div class="row ">
                 <div class="col-sm-12 col-md-6 col-lg-4 mb-3 d-flex ">
                     <div class="card custom-card h-100 ">
-                        <img class="card-img-top " src=" {% static 'img/computadorDestacados (1).png' %} " alt="Card image cap ">
+                        <img class="card-img-top " src=" {% static 'img/computadorDestacados (1).png' %} "
+                            alt="Card image cap ">
                         <div class="card-body d-flex flex-column ">
                             <h5 class="card-title ">PC Gamer Alientech</h5>
                             <h6 class="card-subtitle mb-2 text-muted ">$2,299.00</h6>
@@ -74,7 +118,9 @@
                                 <li class="list-group-item custom-list ">1TB SSD</li>
                             </ul>
 
-                            <p class="card-text mt-auto ">Experimenta un rendimiento sin límites con la PC Gamer Alientech, diseñada para juegos exigentes y multitarea de alto rendimiento, ideal para los amantes del gaming.</p>
+                            <p class="card-text mt-auto ">Experimenta un rendimiento sin límites con la PC Gamer
+                                Alientech, diseñada para juegos exigentes y multitarea de alto rendimiento, ideal para
+                                los amantes del gaming.</p>
                             <a href="# " class="custom-button-card  mt-2 ">Ver Más Detalles</a>
                             <a href="# " class="custom-button-card  mt-2 ">Añadir al Carrito</a>
                         </div>
@@ -82,7 +128,8 @@
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 mb-3 d-flex ">
                     <div class="card custom-card h-100 ">
-                        <img class="card-img-top " src=" {% static 'img/televisorDestacados.png' %} " alt="Card image cap ">
+                        <img class="card-img-top " src=" {% static 'img/televisorDestacados.png' %} "
+                            alt="Card image cap ">
                         <div class="card-body d-flex flex-column ">
                             <h5 class="card-title ">Smart TV 65" Ultra HD</h5>
                             <h6 class="card-subtitle mb-2 text-muted">$1,200.00</h6>
@@ -92,7 +139,8 @@
                                 <li class="list-group-item custom-list">Smart TV con Android</li>
                                 <li class="list-group-item custom-list">HDR y Conectividad Wi-Fi</li>
                             </ul>
-                            <p class="card-text mt-auto">Disfruta de una experiencia visual inigualable con colores vivos y brillo espectacular, ideal para transformar sala.</p>
+                            <p class="card-text mt-auto">Disfruta de una experiencia visual inigualable con colores
+                                vivos y brillo espectacular, ideal para transformar sala.</p>
 
                             <a href="#" class="custom-button-card  mt-2">Ver Mas detalles </a>
                             <a href="#" class="custom-button-card  mt-2">Añadir al Carrito</a>
@@ -101,7 +149,8 @@
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 mb-3  d-flex">
                     <div class="card custom-card h-100">
-                        <img class="card-img-top" src=" {% static 'img/celularesDestacados.png' %}" alt="Card image cap">
+                        <img class="card-img-top" src=" {% static 'img/celularesDestacados.png' %}"
+                            alt="Card image cap">
                         <div class="card-body d-flex flex-column">
 
                             <h5 class="card-title">Smartphone X Pro Max</h5>
@@ -114,7 +163,9 @@
                                 <li class="list-group-item custom-list">Procesador Octa-Core</li>
                             </ul>
 
-                            <p class="card-text">Experimenta un rendimiento excepcional y una calidad fotográfica de nivel profesional con el Smartphone X Pro Max, diseñado para llevar tu experiencia móvil al siguiente nivel</p>
+                            <p class="card-text">Experimenta un rendimiento excepcional y una calidad fotográfica de
+                                nivel profesional con el Smartphone X Pro Max, diseñado para llevar tu experiencia móvil
+                                al siguiente nivel</p>
 
                             <a href="#" class="custom-button-card  mt-auto">Ver Más Detalles</a>
                             <a href="#" class="custom-button-card  mt-2">Añadir al Carrito</a>

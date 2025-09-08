@@ -1,20 +1,22 @@
 {% extends '../base.html' %}
 {% load static %}
-{% block title %} Smartphone | SmartTech {% endblock title %}
+{% block title %} {{categoria.nombre}} | SmartTech {% endblock title %}
 {% block estilos %}
 <link rel="stylesheet" href="{% static 'css/productos.css' %}">
 {% endblock estilos %}
+    
 {% block content %}
-<img src="{% static 'img/banner.png' %}" alt="banner" class="img-banner">
+
+<img src="{{ imagen_banner }} " alt="banner" class="img-banner">
 <div class="container d-flex justify-content-center align-items-center">
     <div class="row">
         <div class="col">
-            <h1 class="text-center mt-3">Smartphones: variedad, tecnología y estilo</h1>
+            <h1 class="text-center mt-3">{{ titulo }}b</h1>
         </div>
         <div class="section-divider"></div>
         <div class="row">
             <div class="col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center align-items-center">
-                <button class="btn btn-outline-light m-3" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
+                <button class="btn btn-outline-light m-3" data-bs-toggle="offcanvas" data-bs-target="#filtrosOffcanvas">
                     Filtrar productos
                 </button>
             </div>
@@ -36,6 +38,19 @@
                 <button class="btn btn-outline-light">❌ Limpiar filtros</button>
             </div>
         </div>
+    </div>
+    <div class="row">
+        {% for producto in productos %}
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ producto.nombre }}</h5>
+                        <p class="card-text">${{ producto.precio }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 </div>
 
