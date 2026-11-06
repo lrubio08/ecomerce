@@ -1,17 +1,11 @@
-{% extends '../base.html' %}
-{% load static %}
-{% block title %} {{categoria.nombre}} | SmartTech {% endblock title %}
-{% block estilos %}
-<link rel="stylesheet" href="{% static 'css/productos.css' %}">
-{% endblock estilos %}
-    
-{% block content %}
+{% extends '../base.html' %} {% load formato %} {% load static %} {% block title %} {{categoria.nombre}} | SmartTech {% endblock title %} {% block estilos %}
+<link rel="stylesheet" href="{% static 'css/productos.css' %}"> {% endblock estilos %} {% block content %}
 
 <img src="{{ imagen_banner }} " alt="banner" class="img-banner">
-<div class="container d-flex justify-content-center align-items-center">
+<div class="container justify-content-center align-items-center">
     <div class="row">
         <div class="col">
-            <h1 class="text-center mt-3">{{ titulo }}b</h1>
+            <h1 class="text-center mt-3">{{ titulo }}</h1>
         </div>
         <div class="section-divider"></div>
         <div class="row">
@@ -22,8 +16,7 @@
             </div>
             <div class="col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center align-items-center">
                 <div class="dropdown">
-                    <a class="btn btn-outline-light ropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="btn btn-outline-light ropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                         Ordenar Por
                     </a>
 
@@ -35,21 +28,23 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center align-items-center">
-                <button class="btn btn-outline-light">❌ Limpiar filtros</button>
+                <a href="{% url 'productos_por_categoria' slug=categoria.slug %}" class=" btn btn-outline-light ">Limpiar filtros</a>
             </div>
         </div>
     </div>
     <div class="row">
         {% for producto in productos %}
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ producto.nombre }}</h5>
-                        <p class="card-text">${{ producto.precio }}</p>
-                    </div>
+        <div class="col-md-6">
+            <div class="card custom-card h-100">
+                <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <p class="card-text">${{ producto.precio|clp }}</p>
+                    <a href="{% url 'detalle_productos' producto.pk %}" class="custom-button-card  mt-2">Ver Mas detalles </a>
+                    <a href="#" class="custom-button-card  mt-2">Añadir al Carrito</a>
                 </div>
             </div>
+        </div>
         {% endfor %}
     </div>
 </div>

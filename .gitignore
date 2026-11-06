@@ -5,6 +5,7 @@ __pycache__/
 # Entorno Virtual
 env/
 venv/
+nuevo_entorno/
 
 # Configuración Local
 *.sqlite3

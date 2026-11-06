@@ -2,16 +2,15 @@
     <div class="row d-flex align-items-center  align-content-end">
         <div class="col-4 d-flex">
             <div class="btn-group  me-3">
-                <button class="btn text-light dropdown-toggle " data-bs-toggle="dropdown"
-                    aria-expanded="false">Categorias</button>
+                <button class="btn text-light dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">Categorias</button>
 
                 <span class="visually-hidden">Toggle Dropdown</span>
                 <ul class="dropdown-menu sub-menu">
                     {% for categoria in categorias %}
                     <li>
                         <a class="dropdown-item" href="{% url 'productos_por_categoria' slug=categoria.slug %}">
-                            {{ categoria.nombre }}
-                        </a>
+                                {{categoria.nombre}}
+                            </a>
                     </li>
                     {% endfor %}
                 </ul>
@@ -20,11 +19,9 @@
         </div>
         <div class="col-8 d-flex justify-content-end">
             <form class="form-inline btn-outline-light" role="search">
-                <input class="btn btn-outline-light mr-sm-2 em-3 " type="search" placeholder="Nombre producto"
-                    aria-label="Search">
+                <input class="btn btn-outline-light mr-sm-2 em-3 " type="search" placeholder="Nombre producto" aria-label="Search">
                 <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
             </form>
         </div>
     </div>
 </div>
-

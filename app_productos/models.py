@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 
 # Create your models here.
@@ -23,6 +24,8 @@ class AtributoProducto(models.Model):
         ('booleano', 'Booleano'),
     ])
     unidad = models.CharField(max_length=10, blank=True)
+    def __str__(self):
+        return self.nombre
 
 class CategoriaAtributo(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
@@ -37,7 +40,7 @@ class Producto(models.Model):
     nombre = models.CharField(max_length=100)
     tipo = models.CharField(max_length=50, choices=[('smartphone', 'Smartphone'), ('notebook', 'Notebook'), ('tablet', 'Tablet'), ('televisores', 'Televisores'), ('pc_escritorio', 'PC Escritorio')])
     descripcion = models.TextField()
-    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    precio = models.DecimalField(max_digits=10, decimal_places=0)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     marca = models.CharField(max_length=50)
     modelo = models.CharField(max_length=50)
@@ -65,8 +68,13 @@ class Filtro(models.Model):
     nombre = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    def __str__(self):
+            return self.nombre
 
 
 class OpcionFiltro(models.Model):
     filtro = models.ForeignKey(Filtro, on_delete=models.CASCADE)
     valor = models.CharField(max_length=50)
+    def __str__(self):
+        return f"{self.filtro.nombre}: {self.valor}"
+

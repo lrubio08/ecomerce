@@ -1,0 +1,1 @@
+web: gunicorn smarttech.wsgi --log-file -

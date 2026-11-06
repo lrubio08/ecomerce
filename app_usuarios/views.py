@@ -1,15 +1,17 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
-from django.urls import reverse
-from app_usuarios.models import Usuarios
-from .forms import UsuariosForm, RecuperarPasswordForm
-from app_usuarios.utils import enviar_correo
-from django.contrib.auth import authenticate
-from django.contrib.auth import login, logout as django_logout
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout as django_logout
 from django.contrib.auth.decorators import login_required
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
+from django.shortcuts import redirect, render
+from django.urls import reverse
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+
+from app_usuarios.models import Usuarios
+from app_usuarios.utils import enviar_correo
+
+from .forms import RecuperarPasswordForm, UsuariosForm
 
 
 def registro(request):
@@ -21,13 +23,14 @@ def registro(request):
             usuario.save()
 
             # Usar la función enviar_correo
+            login_url = request.build_absolute_uri(reverse('login'))
             subject = 'Bienvenido a nuestra plataforma'
             body = f"""
                 <html>
                 <body>
                 <p> Hola <strong>{usuario.first_name} {usuario.last_name}</strong>,</p>
                 <p>Gracias por registrarte. Puedes iniciar sesión aquí:</p>
-                <p><a href=" http://127.0.0.1:8000/usuarios/login/ " style="color: #007BFF; text-decoration: none;">Iniciar sesión</a></p>
+                <p><a href="{login_url}" style="color: #007BFF; text-decoration: none;">Iniciar sesión</a></p>
                 </body>
                 </html>
             """
